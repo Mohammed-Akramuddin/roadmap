@@ -1,0 +1,58 @@
+// Define options data
+const optionsData = [
+    { id: 'Week 1 (Foundation Phase)', label: 'Club Introduction & Member Onboarding', content: "Introduction to the club’s goals, leadership team, and an overview of cloud computing platforms (AWS, Azure, GCP) along with a brief on DevOps and its importance in automating processes and improving deployment efficiency." },
+    { id: 'Week 2', label: 'Cloud Fundamentals & DevOps Workshop', content: 'Workshop covering the basics of cloud computing, including service and deployment models (Public, Private, Hybrid, Multi-Cloud) with an introduction to DevOps practices like continuous integration (CI) and continuous delivery (CD).' },
+    { id: 'Week 3', label: 'Hands-On Lab – Setting Up a Cloud Environment with DevOps', content: 'Practical session guiding members to set up cloud environments on AWS, Azure, or GCP, integrating DevOps principles such as automatic provisioning and automated testing using version control.' },
+    { id: 'Week 4', label: 'Seminar – Industry Applications of Cloud Computing & DevOps', content: 'Seminar with an industry expert discussing real-world applications of cloud computing and how DevOps accelerates business processes, with examples of cloud adoption strategies for different business scales.' },
+    { id: 'Week 5 (Intermediate Phase)', label: 'Cloud Security & DevOps Workshop', content: 'Workshop covering cloud security fundamentals and how DevSecOps integrates security checks into the DevOps pipeline, along with applying security patches automatically during deployments.' },
+    { id: 'Week 6', label: 'Hackathon Kickoff – Cloud-Based Projects with DevOps Integration', content: 'Teams begin developing cloud-based projects using DevOps practices such as automated testing, CI/CD pipelines, and monitoring to streamline the development process.' },
+    { id: 'Week 7', label: 'Mid-Hackathon Check-In & DevOps Cloud Networking Workshop', content: 'Midpoint review of hackathon projects alongside a workshop on networking automation using DevOps tools such as AWS CloudFormation and Azure Resource Manager.' },
+    { id: 'Week 8', label: 'Advanced Cloud & DevOps Services Workshop', content: 'Explore advanced cloud services such as serverless computing, containers (Docker, Kubernetes), and AI/ML services, all integrated with DevOps practices for automated updates and scaling.' },
+    { id: 'Week 9 (Certification Phase)', label: 'Seminar – Preparing for Cloud & DevOps Certifications', content: 'Seminar offering guidance on DevOps and cloud certifications (AWS DevOps Engineer, Azure DevOps Expert, GCP Professional DevOps Engineer), with study guides and resources shared for cloud computing exams.' },
+    { id: 'Week 10', label: 'Hackathon Final Presentations & DevOps Evaluation', content: 'Teams present their final cloud-based projects with DevOps integration, followed by feedback and evaluation on both the technical aspects and the DevOps practices applied.' },
+    { id: 'Week 11', label: 'Cloud Cost Management, Optimization, & DevOps Efficiency Workshop', content: 'Workshop on optimizing cloud costs through DevOps efficiency practices such as automating resource scaling, monitoring costs, and shutting down idle resources via CI/CD pipelines.' },
+    { id: 'Week 12', label: 'Club Wrap-Up & Planning for Next Semester', content: 'Recap of the semester’s activities with feedback on how DevOps integration impacted the projects, and planning for future activities to further advance cloud and DevOps knowledge.' }
+];
+
+// Insert options into the dropdown
+const optionsContainer = document.querySelector('.options');
+optionsData.forEach(option => {
+    const optionElement = document.createElement('div');
+    optionElement.classList.add('option');
+    optionElement.innerText = option.id;
+    optionElement.addEventListener('click', () => toggleCard(option));
+    optionsContainer.appendChild(optionElement);
+});
+
+// Toggle dropdown display
+const selected = document.querySelector('.selected');
+selected.addEventListener('click', () => {
+    optionsContainer.classList.toggle('show'); // Toggle dropdown visibility
+});
+
+// Toggle card display
+let currentCardId = null; // Track the currently displayed card
+function toggleCard(option) {
+    const cardContainer = document.querySelector('#cards-container');
+
+    // Clear existing cards if a different card is selected
+    if (currentCardId === option.id) {
+        cardContainer.innerHTML = ''; // Close the card if clicked again
+        currentCardId = null; // Reset the current card
+    } else {
+        // Close the previous card if it exists
+        cardContainer.innerHTML = '';
+        
+        // Create and display the new card
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.setAttribute('data-id', option.id);
+        card.innerHTML = `
+            <h2>${option.id}</h2>
+            <h5>${option.label}</h5>
+            <p>${option.content}</p>
+        `;
+        cardContainer.appendChild(card);
+        currentCardId = option.id; // Update the current card ID
+    }
+}

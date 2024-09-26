@@ -1,0 +1,123 @@
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+}
+.head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.container {
+    display: flex;
+    width: 90%;
+    height: 80%;
+    max-width: 1200px;
+}
+
+/* Dropdown Styles */
+.select {
+    width: 35%;
+    max-width: 400px;
+    height: 50px;
+    background-color: #2a2f3b;
+    border-radius: 5px;
+    position: relative; /* Position for dropdown */
+    margin-right: 20px; /* Add some space between dropdown and cards */
+}
+
+.selected {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+    user-select: none; /* Prevent text selection */
+}
+
+.arrow {
+    fill: white;
+    transition: transform 300ms ease;
+}
+
+.options {
+    display: none; /* Hide by default */
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    background: #2a2f3b;
+    z-index: 10;
+    transition: max-height 0.3s ease; /* Smooth transition */
+}
+
+.options.show {
+    display: flex; /* Show dropdown */
+}
+
+.option {
+    padding: 10px;
+    background-color: #2a2f3b;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.option:hover {
+    background-color: #6dd5ed;
+}
+
+/* Cards on the right */
+.cards-container {
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.card {
+    background: white;
+    color: black;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    transform: translateY(-20px);
+    opacity: 0;
+    animation: slideFadeIn 0.6s forwards;
+}
+
+@keyframes slideFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .selected {
+        font-size: 14px;
+    }
+
+    .option {
+        font-size: 14px;
+    }
+
+    .cards-container {
+        width: 100%;
+    }
+}
